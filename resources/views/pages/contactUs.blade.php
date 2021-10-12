@@ -62,7 +62,7 @@
                         <form action="{{route('contactUs.store')}}" method="post" name="contact-form">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" required="required" name="name" class="form-control" id="name" placeholder="Name"> <br>
+                                <input type="text" value="{{ old('name') }}" required="required" name="name" class="form-control" id="name" placeholder="Name"> <br>
                                 
                                 @error('name')
                             <div class="alert alert-danger">{{$message}}</div>
@@ -71,26 +71,26 @@
 
                             <div class="form-group">
                                 <label for="email">E-mail</label>
-                                <input type="email" required="required" name="email" class="form-control" id="email1" placeholder="Email"> <br>
+                                <input type="email" value="{{ old('email') }}" required="required" name="email" class="form-control" id="email1" placeholder="Email"> <br>
                             </div>
                             <div class="form-group">
                                 <label for="inputState">Department</label>
                                 <select id="department" class="form-control" name="department">
                                     <option value="">Select a department</option>
-                                    <option value="administration">Administration</option>
-                                    <option value="accounting">Accounting</option>
-                                    <option value="technicalDepartment">Tehnical Department</option>
-                                    <option value="logistic">Logistic</option>
+                                    <option @if (old('department') === 'administration') selected @endif value="administration">Administration</option>
+                                    <option @if (old('department') === 'accounting') selected @endif value="accounting">Accounting</option>
+                                    <option @if (old('department') === 'technicalDepartment') selected @endif value="technicalDepartment">Tehnical Department</option>
+                                    <option @if (old('department') === 'logistic') selected @endif value="logistic">Logistic</option>
                                 </select> <br>
                             </div>
                             <div class="form-group">
                                 <label for="name">Message</label>
-                                <textarea class="form-control" required="required" name="message" rows="3" placeholder="Enter min 20 characters"></textarea> <br>
+                                <textarea class="form-control" required="required" name="message" rows="3" placeholder="Enter min 20 characters">{{ old('message') }}</textarea> <br>
                             </div>
                             <p id="fields_required">* All fields are required</p>
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" required="required" name="readTerms" id="gridCheck" value="1">
+                                    <input class="form-check-input" @if (old ('readTerms')) checked @endif type="checkbox" required="required" name="readTerms" id="gridCheck" value="1">
                                     <label for="gridCheck" class="form-check-label">I Agree</label>
                                 </div>
                             </div>
