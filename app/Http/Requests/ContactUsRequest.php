@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class ContactUsRequest extends FormRequest
 {
@@ -26,10 +28,13 @@ class ContactUsRequest extends FormRequest
         $rules = [
                 'name' => ['required','string', 'min:3', 'max:256'],
                 'email' => 'required|email',
-                    // 'department' => ['nullable', 'string', 
-                    // Rule::in(['administration', 'accounting', 
-                    // 'technicalDepartment', 'logistic']),
-                    // ],
+                'department' => ['nullable', 'string', 
+                Rule::in([
+                    'administration', 
+                    'accounting', 
+                    'technicalDepartment', 
+                    'logistic']),
+                ],
                 'message' => ['required', 'string', 'min:10', 'max:1000'],
                 'readTerms' => 'required|boolean',                    
                 ];
